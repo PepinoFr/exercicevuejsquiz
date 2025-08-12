@@ -13,9 +13,7 @@ const question = computed(() => {
     return props.quiz.questions[stape.value]
 });
 const addAnswer = (answer: string) => {
-    console.log("toto")
     answers.value[stape.value] = answer;
-
     stape.value++;
 
 
@@ -27,7 +25,7 @@ const addAnswer = (answer: string) => {
     <div>
         <h1 class="text-2xl font-bold"> {{ quiz?.title }}</h1>
         <ProgressionBar class="" :progression="stape && quiz.questions ? ((stape / quiz.questions.length) * 100) : 0" />
-        <Questions v-if="stape !== quiz.questions.length" :question="question.question" :choices="question.choices"
+        <Questions v-if="stape !== quiz.questions.length" :question="question.question" :choices="question.choices" :correctawn="question.correct_answer"
             @answerSelected="addAnswer" />
         <Recap v-else :answers="answers" :quiz="quiz" />
 
